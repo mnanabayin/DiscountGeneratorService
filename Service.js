@@ -256,7 +256,7 @@ app.get("/fetch",async (req, res) => {
 	if(req.body.UserId.trim().length === 0 ||  req.body.UserId.trim().length < 24)
 		return res.status(404).send({message:"Check User ID",data:[]})
 
-		;
+
 	await GeneratedDiscount.find({brandUserId:req.body.brandUserId}).then((code) => {
 		if(code){
 			var value = code[Math.floor(Math.random() * code.length)]
@@ -264,12 +264,11 @@ app.get("/fetch",async (req, res) => {
 			//save taken discount code and notify Brand User
 			if(logTakenCode({"userId":req.body.UserId,"brandUserId": req.body.brandUserId,"codeId":value._id}) === true)
 			{  
-				
-				var brandEmail = User.findById(value.brandUserId).select('email')
-				//SOmething to Notify brand
-				console.log(brandEmail)
-				//notify.SendEmail({email:brandEmail,code:value.discountCode})
-				
+				User.findById(value.brandUserId).then((user) => {
+					if(user){
+						notify.SendEmail({email:user.email,code:value.discountCode})
+					} 
+				})
 				res.send({message:"You discount Code is: "+value.discountCode,data:value})
 			}
 

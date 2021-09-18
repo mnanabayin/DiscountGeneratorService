@@ -12,7 +12,6 @@ module.exports.SendEmail = (brand) =>
         pass: process.env.TEST_PASS
         }
     });
-    
     var mailOptions = {
         from: process.env.TEST_EMAIL,
         to: brand.email,
