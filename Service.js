@@ -181,7 +181,7 @@ app.get("/user/:uid",async (req, res) => {
 
 
 //Generate discount Code by Brand 
-app.post("/generate",authenticateToken, (req, res) => {
+app.post("/generatecodes",authenticateToken, (req, res) => {
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
 	try{

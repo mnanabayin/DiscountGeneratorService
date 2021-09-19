@@ -1,6 +1,6 @@
 # DiscountGeneratorService
-This simple service designed with Node JS, Express and MongoDB
-with JWT authentication
+This simple service designed with Node JS, Express, MongoDB & Mongoose, JWT authentication and CouponJS.
+There is also an email sender using nodemailer.
 
 # Installation
 Ofcourse you need to install Node JS :)
@@ -52,7 +52,7 @@ Ofcourse you need to install Node JS :)
     
     End point
     
-    POST localhost:5050/generate
+    POST localhost:5050/generatecodes
 
     request body 
 
@@ -70,7 +70,7 @@ Ofcourse you need to install Node JS :)
 
     request body 
     {
-      "email":"mnanabayin@gmail.com"
+      "email":"xxxxx@gmail.com"
     } 
    
 
