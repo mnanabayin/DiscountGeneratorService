@@ -181,7 +181,7 @@ app.get("/user/:uid",async (req, res) => {
 
 
 //Generate discount Code by Brand 
-app.post("/generatecodes",authenticateToken, (req, res) => {
+app.post("/discount/generatecodes",authenticateToken, (req, res) => {
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
 	try{
@@ -217,7 +217,7 @@ app.post("/generatecodes",authenticateToken, (req, res) => {
 
 
 //Get all Codes By Brand User
-app.get("/codes",authenticateToken, async (req, res) => {
+app.get("/discount/codes",authenticateToken, async (req, res) => {
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
 	try{
@@ -249,7 +249,7 @@ app.get("/codes",authenticateToken, async (req, res) => {
 
 
 //Fetch a discount code for User
-app.get("/fetchcode",authenticateToken, async (req, res) => {
+app.get("/discount/fetchcode",authenticateToken, async (req, res) => {
     
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
