@@ -110,8 +110,10 @@ function isObjectEmpty(obj)
 }
 
 
-// Main endpoint
+// Main endpoint. Test the authentication middleware 
 app.get("/",authenticateToken, (req, res) => {
+	//get authenticated user session variables
+	console.log(req.user.user._id)
 	res.send("This is our main endpoint")
 })
 
@@ -215,7 +217,7 @@ app.post("/generate", (req, res) => {
 
 
 //Get all Codes By Brand User
-app.get("/codes",async (req, res) => {
+app.get("/codes",authenticateToken, async (req, res) => {
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
 	try{
@@ -247,7 +249,7 @@ app.get("/codes",async (req, res) => {
 
 
 //Fetch a discount code for User
-app.get("/fetch",async (req, res) => {
+app.get("/fetch",authenticateToken, async (req, res) => {
     
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
