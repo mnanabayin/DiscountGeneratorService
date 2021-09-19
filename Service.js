@@ -71,7 +71,7 @@ function validateUser(newUser){
 	   return true
    }
 
-
+//Log all chosen or pick codes
 function logTakenCode(data)
 {
 	const taken = {
@@ -181,7 +181,7 @@ app.get("/user/:uid",async (req, res) => {
 
 
 //Generate discount Code by Brand 
-app.post("/generate", (req, res) => {
+app.post("/generate",authenticateToken, (req, res) => {
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
 	try{
@@ -249,7 +249,7 @@ app.get("/codes",authenticateToken, async (req, res) => {
 
 
 //Fetch a discount code for User
-app.get("/fetch",authenticateToken, async (req, res) => {
+app.get("/fetchcode",authenticateToken, async (req, res) => {
     
 	if(isObjectEmpty(req.body))
 		return res.status(404).send({message:"Pass body parameters",data:[]})
